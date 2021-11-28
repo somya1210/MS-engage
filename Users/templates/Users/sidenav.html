@@ -1,0 +1,64 @@
+{% load static %}
+<nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-purple   " style="background:linear-gradient(rgba(0, 1, 245, 0), rgba(0, 0, 25, 2)), url('{% static 'Images/book.jpg' %}')no-repeat center center fixed; " >
+    <div class="scrollbar-inner">
+        <br>
+    <div class="sidenav-header  align-items-center">
+        <span class="h2 font-weight-bold mb-0"></span>
+        <h2> <span style="color:white;text-align:center;"><b>Hello {{ request.user }}</b></span></h2>
+          <img src="{{ request.user.profile.profile_pic.url }}" alt="Smiley face" style=" border-radius: 50%;" width="90" height="100" />
+    </div>
+      <br>
+      <br>
+        <br>
+
+
+    <div class="navbar-inner">
+      <!-- Collapse -->
+      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+        <!-- Nav items -->
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link"  href="{% url 'home' %}">
+              <i class='fas fa-chalkboard' style='font-size:22px;color:white'></i>
+                <span style="color:white;text-align:center;"><b>PostQuery</b></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a  href="{% url 'progress' %}" class="nav-link ">
+              <i class="fas fa-address-book" style='font-size:22px;color:white'></i>
+              <span style="color:white;text-align:center;"><b>Progress</b></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'homework' %}">
+            <i class='fas fa-inbox' style='font-size:22px;color:white'></i>
+              <span style="color:white;text-align:center;"><b>Assignments</b></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'h' %}" class="nav-link ">
+
+                <i class='fas fa-feather-alt' style='font-size:22px;color:white'></i>
+              <span style="color:white;text-align:center;"><b>Journal</b></span>
+            </a>
+          </li>
+
+           <li class="nav-item">
+            <a class="nav-link" href="{% url 'todolist' %}">
+             <i class='fab fa-accusoft' style='font-size:22px;color:white'></i>
+               <span style="color:white;text-align:center;"><b>To-do-List</b></span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user_logout' %}">
+              <i class="ni ni-user-run text-white" style='font-size:22px;color:white'></i>
+              <span style="color:white;text-align:center;"><b>LogOut</b></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

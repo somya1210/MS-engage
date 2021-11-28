@@ -1,0 +1,139 @@
+<!--Dashboard for Users -->
+{% extends 'Users/base.html' %}
+<!--Display title -->
+{% load static %}
+{% block title %} Dashboard {% endblock title %}
+<!-- include style sheets -->
+<style>
+.button {
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+
+{% block content %}
+
+    <!-- Header -->
+
+      <div class="container-fluid" style="background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('{% static 'Images/image.png' %}')no-repeat center center fixed;">
+        <div class="header-body">
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item"><a href="/">Home</a></li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+          <!-- Subject Card stats -->
+           <div class="row">
+                   {% for subject in request.user.profile.standard.subjects.all %}
+                      <div class="col-md-4 d-flex mb-5 justify-content-center">
+                        <div class="card card-std text-center" style="width: 20rem;">
+                          <div class="card-body text-center">
+                            <h4 class="card-title" style="color:#ff5722;"><b>{{subject.name}}</b></h4>
+                            <p class="card-text"><b><b>{{subject.description|truncatechars:75}}</b></b></p>
+                            <a href="{% url 'modules:lesson_list' slug=subject.slug standard=request.user.profile.standard.slug %}" class="btn btn-primary"><span>Get Lectures</span></button></a>
+
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+              </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    <!-- Page content -->
+
+<div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+  <th scope="col">Rank</th>
+                    <th scope="col">Name of Student</th>
+                    <th scope="col">Score</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+
+ <td>
+                      User5
+                    </td>
+                    <td>
+                      User5
+                    </td>
+
+                    <td>
+                      8
+                    </td>
+
+                  </tr>
+                  <tr>
+ <td>
+                      User5
+                    </td>
+                    <td>
+                      User8
+                    </td>
+
+                    <td>
+                      8
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+</div>
+
+
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+
+  <script src="/static/assets/vendor/chart.js/dist/Chart.min.js"></script>
+  <script src="/static/assets/vendor/chart.js/dist/Chart.extension.js"></script>
+
+{% endblock javascripts %}

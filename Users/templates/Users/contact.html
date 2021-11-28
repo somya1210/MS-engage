@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Contact Us {% endblock %}
+
+{% block image_block %}
+<header class="info-header">
+  <div id="page-intro" class="container-fluid d-flex align-items-center justify-content-center ">
+    <div class="row d-flex justify-content-center text-center">
+      <div class="col-md-10 text-white">
+        <!-- heading -->
+        <h2 class="display-4 font-weight-bold  p-5 " style="color:#ff5722;" > Feedback </h2>
+        <!-- divider -->
+        <hr style="color:#ff5722;">
+        <!-- description -->
+        <h4 class="white-text my-4">Suggestions and feedbacks are welcomed.</h4>
+  </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<section class="text-center mt-5">
+ <h2 class="mb-5 font-weight-bold" style="color:#ff5722;">Fill the Form</h2>
+
+</section>
+              <div class="main_content" style="margin-left:14em">
+    <div class="info">
+    <div class="col-md-8 mt-3 left">
+
+            <div class="card mb-4">
+                <div class="card-body">
+                  <form method="post">
+                    <div class="form-group">
+                      {% csrf_token %}
+                      {{form|crispy}}
+                      <input type="submit" value="Submit Response" class="btn btn-success btn-lg btn-block" style="width:200px; margin-left:8em;">
+                    </div>
+                  </form>
+              </div>
+              </div>
+    </div>
+    </div>
+              </div>
+
+{% endblock %}

@@ -1,0 +1,110 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dear Diary</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" />
+
+<style>
+body {
+  font-size: 20px;
+  height: 100%;
+
+}
+
+
+</style>
+</head>
+
+<body >
+   <nav class="navbar navbar-expand-lg  navbar-light bg-warning fixed-top scrolling-navbar">
+                <div class="container" >
+                      <a class="navbar-brand" href="{% url 'index' %}" style="color:#ff5722;" >Home</a>
+                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                           aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                           <span class="navbar-toggler-icon"></span>
+                       </button>
+                      <div class="collapse navbar-collapse" id="basicExampleNav" >
+                        <ul class=" navbar-nav  mr-auto smooth-scroll " >
+                                <li class="nav-item">
+                                   <a class="nav-link" href="{% url 'modules:standard_list' %}">Curriculum</a>
+                                </li>
+                                {% if user.is_superuser %}
+                                <li class="nav-item ">
+                                   <a class="nav-link" href="{% url 'admin:index' %}">Admin</span> </a>
+                                </li>
+                                {%endif%}
+                                {% if user.is_authenticated %}
+                                    <li class="nav-item  ">
+                                     <a class="nav-link" href="{% url 'user_logout' %}">Logout</a>
+                                    </li>
+                                    <li class="nav-item  ">
+                                     <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                                    </li>
+                                {% else %}
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="{% url 'user_login' %}">Login</a>
+                                    </li>
+                                    <li class="nav-item " >
+                                       <a class="nav-link" href="{% url 'register' %}">Register</span> </a>
+                                    </li>
+                                {% endif %}
+                                <li class="nav-item">
+                                   <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                                </li>
+
+
+                        </ul>
+                      </div>
+                </div>
+              </nav>
+
+<header class="info-header" style="background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{% static 'Images/i5.png' %}')no-repeat center center fixed;">
+  <div id="page-intro" class="container-fluid d-flex align-items-center justify-content-center ">
+    <div class="row d-flex justify-content-center text-center">
+      <div class="col-md-10 text-white">
+        <h2 class="display-4 font-weight-bold  p-5 " style="color:white;" >Journal</h2>
+        <hr style="color:#ff5722;">
+
+        <!-- description -->
+        <h4 class="white-text my-4">"I kept always two books in my pocket, one to read, one to write in."
+--Robert Louis Stevenson  </h4>
+  </div>
+    </div>
+  </div>
+</header>
+
+<div class="main_content" style="margin-left:6em">
+    <div class="info">
+    <div class="col-md-8 mt-3 left">
+    {% for entry in entries %}
+        {% if request.user == entry.name %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h1 class="card-title">{{ post.title }}</h1>
+                    <small>
+                         <p>
+                                <span style='font-size:30px;'>&#128519;</span>
+                                <strong>{{entry.name}} Your Day on</strong>
+                                <strong>{{ entry.date_posted }} was like:</strong>
+                                <br><br> <p class="thick" align="center" >Dear Diary,{{ entry.text }} </p>
+                            </p>
+                    </small>
+                </div>
+            </div>
+{% endif %}
+        {% endfor %}
+</div>
+</div>
+</div>
+                <div style=" margin-left: 24em;">
+                <div class="media-content">
+                    <div class="content">
+                        <a class="button" href="{% url 'add' %}" style="  background-color: Orange;border: none;color: white;">Add new entry</a>
+                    </div>
+                </div>
+                    </div>
+</body>
+

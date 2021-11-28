@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Login{% endblock %}
+
+{% block image_block %}
+<header class="info-header">
+  <div id="page-intro" class="container-fluid d-flex align-items-center justify-content-center ">
+    <div class="row d-flex justify-content-center text-center">
+      <div class="col-md-10 text-white">
+        <!-- heading -->
+        <h2 class="display-4 font-weight-bold  p-5 " style="color:#ff5722;" > Login </h2>
+        <!-- divider -->
+        <hr style="color:#ff5722;">
+        <!-- description -->
+        <h4 class="white-text my-4">Live as if you were to die tomorrow. Learn as if you were to live forever.” ― Mahatma Gandhi</h4>
+  </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+
+<section class="text-center mt-4">
+              <h2 class="mb-5 font-weight-bold" style="color:#ff5722;">Login To Explore</h2>
+              <!-- class row for description-->
+              <div class="row d-flex justify-content-center mb-4">
+                <!-- class column -->
+                <div class="col-md-8">
+                  <p class="grey-text">Authorised users can login in to the system
+                                    .</p>
+                </div>
+              </div>
+
+
+              <div class="row d-flex justify-content-center mb-4">
+
+
+    <div class="main_content" style="margin-left:11em">
+    <div class="info">
+    <div class="col-md-8 mt-3 left">
+
+            <div class="card mb-4">
+                <div class="card-body">
+                     <form action="{% url 'user_login' %}" method="post">
+                  <div class="form-group">
+
+
+                  {% csrf_token %}
+                  <div class="col-md-12">
+                    <div class="row">
+
+
+                  <label for="username">Username:</label>
+                  <input type="text" name="username" placeholder="Username" class="form-control">
+
+                  <label for="password">Password:</label>
+                  <input type="password" name="password" class="form-control">
+                  </div>
+                  <div class="row justify-content-center">
+                      <input type="submit" value="Login" class="btn btn-success btn-lg mt-3">
+                  </div>
+                  </div>
+                  </div>
+                </form>
+
+                </div>
+            </div>
+
+</div>
+</div>
+</div></div>
+</section>
+<div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+
+                {% if msg %}
+                  <p>{{ msg }}</p>
+                {% else %}
+                  <p>
+                    Add your credentials
+                  </p>
+                {% endif %}
+
+              </div>
+</div>
+{%endblock%}

@@ -1,0 +1,366 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> Dashboard</title>
+<style>body{
+    margin:0;
+    padding:0;
+    font-family:"Roboto",sans-serif;
+  }
+  header{
+    position:fixed;
+    background:black;
+    padding:20px;
+    width:100%;
+    height:30px;
+  }
+  .left_area h3{
+    color:#fff;
+    margin:0;
+    text-transform: uppercase;
+    font-size:22px;
+    font-weight:900;
+  }
+  .left_area span{
+    color:#07CFE1;
+  }
+  #logout_btn{
+
+    padding:5px;
+
+
+    float:right;
+    margin-top:-30px;
+    margin-right:40px;
+    border-radius:2px;
+    font-size:15px;
+    font-weight:600;
+    color:#fff;
+    transition:0.5s;
+    transition-property:background;
+
+  }
+  .right_area{
+      color: white;
+  }
+
+  .sidebar{
+    background: #2F323A;
+    margin-top: 70px;
+    padding-top: 30px;
+    position: fixed;
+    left: 0;
+    width:250px;
+    height:100%;
+    transition: 0.5s;
+    transition-property: left;
+  }
+  .sidebar .profile-image{
+    width: 50%;
+    height: 50%;
+    border-radius: 100px;
+    margin-bottom: 10px;
+  }
+  .sidebar h4{
+    color: #ccc;
+    margin-top: 0;
+    margin-bottom: 20px;
+
+  }
+  .sidebar a{
+    color: #fff;
+    display:block;
+    width:100%;
+    line-height: 60px;
+    text-decoration: none;
+    padding-left: 40px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    transition-property: background;
+  }
+  .sidebar a:hover{
+    background: #19B3D3;
+  }
+  .sidebar i{
+    padding-right: 10px;
+
+  }
+  label #sidebar_btn{
+    z-index: 1;
+    color:#fff;
+    position:fixed;
+    cursor: pointer;
+    left:300px;
+    font-size:20px;
+    margin: 5px 0;
+    transition: 0.5s;
+    transition-property: color;
+  }
+  label #sidebar_btn:hover{
+    color:#19B3D3;
+
+  }
+  #check:checked ~ .sidebar{
+    left:-190px;
+
+  }
+  #check:checked ~ .sidebar a span{
+    display:none;
+  }
+
+  #check:checked ~.sidebar a{
+    font-size:20px;
+    margin-left: 170px;
+    width:80px;
+
+  }
+  .logo{
+      margin-top: 80px;
+      margin-left: 400px;
+  }
+  .card{
+    width: 50%;
+    display: inline-block;
+    box-shadow: 2px 2px 20px black;
+    border-radius: 5px;
+    margin: 2%;
+    background-color: rgb(200, 234, 97);
+   }
+
+.image{
+    margin-left: auto;
+margin-right: auto;
+text-align:center;
+}
+.image img{
+ width: 50%;
+ height:50%;
+ padding: 20px;
+ /* border-top-right-radius: 5px;
+ border-top-left-radius: 5px;
+  */
+
+
+}
+
+.title{
+
+ text-align: center;
+ padding: 10px;
+
+}
+
+.title h1{
+ font-size: 20px;
+}
+
+.des{
+ padding: 3px;
+ text-align: left;
+
+ padding-top: 10px;
+ border-bottom-right-radius: 5px;
+ border-bottom-left-radius: 5px;
+ margin-left: 50px;
+ font-size: 20px;
+}
+button{
+ margin-top: 40px;
+ margin-bottom: 15px;
+ background-color: rgb(150, 245, 255);
+ border: 2px solid #19B3D3;
+
+ border-radius: 5px;
+ padding:10px;
+ margin-left: 130px;
+ width: 100px;
+ font-size: 15px;
+}
+button:hover{
+ background-color: black;
+ color: white;
+ transition: .5s;
+ cursor: pointer;
+}
+
+
+.main{
+    display: flex;
+    margin: 2%;
+    margin-left: 250px;
+   }
+   .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+   .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #19B3D3;
+    color: white;
+    text-align: center;
+ }</style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+  </head>
+  <body>
+<nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <div class="scrollbar-inner">
+    <!-- Brand -->
+    <div class="sidenav-header  align-items-center">
+      <a class="navbar-brand" href="/">
+        <img src="/static/assets/img/brand/blue.png" class="navbar-brand-img" alt="Argon Design - Jinja Template Logo.">
+      </a>
+    </div>
+    <div class="navbar-inner">
+      <!-- Collapse -->
+      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+        <!-- Nav items -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link {% if 'index' in segment %} active {% endif %}" href="/">
+              <i class="ni ni-tv-2 text-primary"></i>
+              <span class="nav-link-text">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'icons' in segment %} active {% endif %}" href="/icons.html">
+              <i class="ni ni-planet text-orange"></i>
+              <span class="nav-link-text">Icons</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'map' in segment %} active {% endif %}" href="/map.html">
+              <i class="ni ni-pin-3 text-primary"></i>
+              <span class="nav-link-text">Google</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'profile' in segment %} active {% endif %}" href="/profile.html">
+              <i class="ni ni-single-02 text-yellow"></i>
+              <span class="nav-link-text">Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'tables' in segment %} active {% endif %}" href="/tables.html">
+              <i class="ni ni-bullet-list-67 text-default"></i>
+              <span class="nav-link-text">Tables</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login.html">
+              <i class="ni ni-key-25 text-info"></i>
+              <span class="nav-link-text">Login (template)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register.html">
+              <i class="ni ni-circle-08 text-pink"></i>
+              <span class="nav-link-text">Register (template)</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user_logout' %}">
+              <i class="ni ni-user-run text-red"></i>
+              <span class="nav-link-text">Logout</span>
+            </a>
+          </li>
+        </ul>
+        <!-- Divider -->
+        <hr class="my-3">
+        <!-- Heading -->
+        <h6 class="navbar-heading p-0 text-muted">
+          <span class="docs-normal">Resources</span>
+        </h6>
+        <!-- Navigation -->
+        <ul class="navbar-nav mb-md-3">
+
+          <li class="nav-item">
+            <a class="nav-link"
+               target="_blank"
+               href="https://appseed.us/admin-dashboards/django-dashboard-argon">
+              <i class="ni ni-archive-2"></i>
+              <span class="nav-link-text">Product Page</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link"
+               target="_blank"
+               href="https://appseed.us/admin-dashboards/django-dashboard-argon-pro">
+              <i class="ni ni-spaceship text-red"></i>
+              <span class="nav-link-text text-red">PRO Version</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active active-pro"
+               target="_blank"
+               href="http://appseed.us">
+              <i class="ni ni-send text-dark"></i>
+              <span class="nav-link-text">AppSeed</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+    <header>
+      {% comment %} <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label> {% endcomment %}
+      <div class="left_area">
+        <h3>
+          MAN<span>THAN</span>
+        </h3>
+      </div>
+      <div class="right_area">
+       <a href="#" id="logout_btn"><i class="fa fa-sign-out " aria-hidden="true" style="color: white;"></i><span style="color: white;">LOGOUT</span></a>
+
+
+      </div>
+    </header>
+
+
+
+habolo {{ request.user.profile.standard.name}}
+
+    <div class="row">
+<div class="column">
+
+  {% for subject in request.user.profile.standard.subjects.all %}
+<div class="card" style="width:  18rem;">
+     <img src="{{subject.image.url|default_if_none:'#'}}" class="card-img" alt="No image found" height="50px" width="50px">
+  <div class="card-body">
+    <h5 class="card-title">{{subject.name}}</h5>
+    <p class="card-text">{{subject.description|truncatechars:75}}.</p>
+     <a href="userform" class="btn btn-primary">OrderNow</a>
+        <a href="{% url 'curriculum:lesson_list' slug=subject.slug standard=request.user.profile.standard.slug %}"><button class="button-les"> <span> Get Lessons</span></button></a>
+
+  </div>
+</div>
+</div>
+  {% endfor %}
+</div>
+<br><br>
+<br>
+    <br>
+  Quiz Section
+  Announcement
+  journal
+  homework
+  todo list
+  <a href="{% url 'inbox' %}">Inbox</a>
+  </body>
+</html>
